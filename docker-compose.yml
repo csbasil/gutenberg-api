@@ -1,0 +1,38 @@
+version: "3"
+
+services:
+  db:
+    build: ./postgres
+    environment:
+      POSTGRES_USER: "postgres"
+      POSTGRES_PASSWORD: "ignite"
+      POSTGRES_DB: "gutendex"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    volumes:
+      - "./postgres/data:/var/lib/postgresql/data"
+  core:
+    build: ./app
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "8000:8000"
+    volumes:
+      - "./app:/app"
+    environment:
+      - DEBUG=True
+      - DATABASE_URL=postgresql://postgres:ignite@db:5432/gutendex
+      - ALLOWED_HOSTS=["*"]
+
+  pg-admin:
+    image: dpage/pgadmin4
+    profiles: ["pg-admin"]
+    ports:
+      - "9000:80"
+    environment:
+      PGADMIN_DEFAULT_EMAIL: "admin@ignitesol.com"
+      PGADMIN_DEFAULT_PASSWORD: "password"
