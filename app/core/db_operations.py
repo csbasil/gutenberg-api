@@ -1,3 +1,4 @@
+"""Perform Operations on database from ORM layer."""
 from sqlalchemy.sql import func, text
 from sqlalchemy import nullslast, or_, and_, any_
 from sqlalchemy.orm import joinedload
@@ -15,10 +16,10 @@ from core.models import (
     BookSubject
 )
     
-    
-
 
 def books_list(database, filters: dict = None, offset: int = 0, limit: int = 25):
+    """Get list of books based on filters."""
+
     if filters is None:
         filters = {}
 
@@ -67,7 +68,4 @@ def books_list(database, filters: dict = None, offset: int = 0, limit: int = 25)
 
     count = q.count()
     books = q.offset(offset*limit).limit(limit).all()
-
-    print(count)
-
     return count, books

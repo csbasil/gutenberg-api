@@ -26,6 +26,42 @@ def get_books(
     offset: int = 0,
     db_session: Session = Depends(get_db),
 ):
+    """Get list of books based on given filters.
+
+        Parameters
+        ----------
+            book_id: int
+                `gutenberg_id` id of the book.
+
+            language(optional): str
+                language filter which suports multiple language codes via comma seperated values.
+
+            mime_type(optional): str
+                `mime_type` filter which suports multiple mime_types via comma seperated values.
+
+            topic(optional): str
+                topic filter which suports multiple topics via comma seperated values. topic 
+                can be book subject name or book shelf name. 
+
+            author(optional): str
+                `author_name` filter which suports multiple author_names via comma seperated values.
+            
+            title(optional): str
+                `title` filter which suports multiple titles via comma seperated values.
+
+
+            offset(optional): int
+                Offset for pagination. offset = page number starting from 0.
+
+            limit(optional): int
+                Limit for pagination. Sets number of batchs per page.
+
+
+        Returns
+        -------
+            JSON payload in the form of `BooksResponse`.
+    """
+
     filters = {
         "gutenberg_id": book_id,
         "language": list(map(str.lower, language.split(","))) if language else [],

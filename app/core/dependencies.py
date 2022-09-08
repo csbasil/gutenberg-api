@@ -1,3 +1,4 @@
+"""Dependancies for the endpoints."""
 from core.database import SessionLocal
 
 
