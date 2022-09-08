@@ -7,10 +7,10 @@ Project comes with pre-configured  `docker-compose` file which can be run by the
 
 `docker compose up --build`
 
-Alternatively, one can run it pgadmin also, by:
+Alternatively, one can run it with pgadmin also, by:
 
 `docker compose --profile=pg-admin up`
 
 The above command will setup all the required containers: fastapi, postgres, pgadmin(optional) and intialize the gutenberg dump data on its first run.
 
-The api can be accessed via `localhost:8000`.
+The api can be accessed via `localhost:8000/docs` along with swagger documentation.
