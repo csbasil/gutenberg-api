@@ -11,6 +11,8 @@ class BookAuthor(BaseModel):
     death_year: Optional[int]
 
     class Config:
+        """Extra configs for schema."""
+
         orm_mode = True
 
 
@@ -20,6 +22,8 @@ class BookShelf(BaseModel):
     name: str
 
     class Config:
+        """Extra configs for schema."""
+
         orm_mode = True
 
 
@@ -29,6 +33,8 @@ class BookLanguage(BaseModel):
     code: str
 
     class Config:
+        """Extra configs for schema."""
+
         orm_mode = True
 
 
@@ -38,6 +44,8 @@ class BookSubject(BaseModel):
     name: str
 
     class Config:
+        """Extra configs for schema."""
+
         orm_mode = True
 
 
@@ -48,6 +56,8 @@ class BookFormat(BaseModel):
     url: str
 
     class Config:
+        """Extra configs for schema."""
+
         orm_mode = True
 
 
@@ -62,6 +72,8 @@ class BookBase(BaseModel):
     formats: Optional[List[BookFormat]]
 
     class Config:
+        """Extra configs for schema."""
+
         orm_mode = True
 
 
@@ -72,4 +84,6 @@ class BooksResponse(BaseModel):
     books: List[BookBase]
 
     class Config:
+        """Extra configs for schema."""
+
         orm_mode = True
