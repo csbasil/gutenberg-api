@@ -1,3 +1,4 @@
+"""ORM mapping for underlaying database tables."""
 # coding: utf-8
 from sqlalchemy import (
     CheckConstraint,
@@ -60,6 +61,7 @@ BookShelf = Table(
 # tables
 
 class Book(Base):
+    """Book table."""
     __tablename__ = "books_book"
     __table_args__ = (
         CheckConstraint("download_count >= 0"),
@@ -82,6 +84,7 @@ class Book(Base):
     shelfs = relationship("Shelf",secondary=BookShelf)
 
 class Author(Base):
+    """Author table."""
     __tablename__ = "books_author"
 
     id = Column(
@@ -94,6 +97,7 @@ class Author(Base):
     name = Column(String(128), nullable=False)
 
 class Shelf(Base):
+    """Shelf Table."""
     __tablename__ = "books_bookshelf"
 
     id = Column(
@@ -104,6 +108,7 @@ class Shelf(Base):
     name = Column(String(64), nullable=False, unique=True)
 
 class Language(Base):
+    """Language Table."""
     __tablename__ = "books_language"
 
     id = Column(
@@ -115,6 +120,7 @@ class Language(Base):
 
 
 class Subject(Base):
+    """Subject Table."""
     __tablename__ = "books_subject"
 
     id = Column(
@@ -125,6 +131,7 @@ class Subject(Base):
     name = Column(String(256), nullable=False)
 
 class Format(Base):
+    """Book Format Table."""
     __tablename__ = "books_format"
 
     id = Column(

@@ -1,8 +1,10 @@
+"""Pydantic schemas for request/response models."""
 from typing import List, Optional
 from pydantic import BaseModel
 
 
 class BookAuthor(BaseModel):
+    """Book author schema."""
     name: str
     birth_year: Optional[int]
     death_year: Optional[int]
@@ -12,6 +14,7 @@ class BookAuthor(BaseModel):
 
 
 class BookShelf(BaseModel):
+    """Book shelf schema."""
     name: str
 
     class Config:
@@ -19,6 +22,7 @@ class BookShelf(BaseModel):
 
 
 class BookLanguage(BaseModel):
+    """Book language schema."""
     code: str
 
     class Config:
@@ -26,6 +30,7 @@ class BookLanguage(BaseModel):
 
 
 class BookSubject(BaseModel):
+    """Book subject schema."""
     name: str
 
     class Config:
@@ -33,6 +38,7 @@ class BookSubject(BaseModel):
 
 
 class BookFormat(BaseModel):
+    """Book format schema."""
     mime_type: str
     url: str
 
@@ -41,6 +47,7 @@ class BookFormat(BaseModel):
 
 
 class BookBase(BaseModel):
+    """Book Base schema."""
     title: Optional[str]
     authors: Optional[List[BookAuthor]]
     languages: Optional[List[BookLanguage]]
@@ -53,6 +60,7 @@ class BookBase(BaseModel):
 
 
 class BooksResponse(BaseModel):
+    """Book Response schema."""
     no_of_books: int
     books: List[BookBase]
 
