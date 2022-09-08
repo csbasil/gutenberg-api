@@ -8,8 +8,3 @@ app.add_event_handler("startup", verify_postgres)
 
 app.include_router(search_router)
 
-
-@app.get("/")
-def root():
-    """Test Root route"""
-    return "Hello"
