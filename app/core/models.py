@@ -1,5 +1,6 @@
 """ORM mapping for underlaying database tables."""
 # coding: utf-8
+# pylint: disable = import-error
 from sqlalchemy import (
     CheckConstraint,
     Column,
@@ -7,12 +8,10 @@ from sqlalchemy import (
     Integer,
     SmallInteger,
     String,
-    UniqueConstraint,
     text,
     Table,
 )
-from sqlalchemy.orm import relationship, backref
-from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import relationship  # pylint: disable = import-error
 from core.database import Base
 
 # association tables
@@ -26,7 +25,12 @@ BookAuthor = Table(
         primary_key=True,
         server_default=text("nextval('books_book_languages_id_seq'::regclass)"),
     ),
-    Column("author_id", ForeignKey("books_author.id")),
+    Column(
+        "author_id",
+        ForeignKey("books_author.id", deferrable=True, initially="DEFERRED"),
+        nullable=False,
+        index=True,
+    ),
     Column(
         "book_id",
         ForeignKey("books_book.id", deferrable=True, initially="DEFERRED"),
@@ -44,8 +48,18 @@ BookLanguage = Table(
         primary_key=True,
         server_default=text("nextval('books_book_languages_id_seq'::regclass)"),
     ),
-    Column("language_id", ForeignKey("books_language.id")),
-    Column("book_id", ForeignKey("books_book.id")),
+    Column(
+        "language_id",
+        ForeignKey("books_language.id", deferrable=True, initially="DEFERRED"),
+        nullable=False,
+        index=True,
+    ),
+    Column(
+        "book_id",
+        ForeignKey("books_book.id", deferrable=True, initially="DEFERRED"),
+        nullable=False,
+        index=True,
+    ),
 )
 BookSubject = Table(
     "books_book_subjects",
@@ -56,8 +70,18 @@ BookSubject = Table(
         primary_key=True,
         server_default=text("nextval('books_book_languages_id_seq'::regclass)"),
     ),
-    Column("subject_id", ForeignKey("books_subject.id")),
-    Column("book_id", ForeignKey("books_book.id")),
+    Column(
+        "subject_id",
+        ForeignKey("books_subject.id", deferrable=True, initially="DEFERRED"),
+        nullable=False,
+        index=True,
+    ),
+    Column(
+        "book_id",
+        ForeignKey("books_book.id", deferrable=True, initially="DEFERRED"),
+        nullable=False,
+        index=True,
+    ),
 )
 
 BookShelf = Table(
@@ -69,7 +93,12 @@ BookShelf = Table(
         primary_key=True,
         server_default=text("nextval('books_book_languages_id_seq'::regclass)"),
     ),
-    Column("bookshelf_id", ForeignKey("books_bookshelf.id")),
+    Column(
+        "bookshelf_id",
+        ForeignKey("books_bookshelf.id", deferrable=True, initially="DEFERRED"),
+        nullable=False,
+        index=True,
+    ),
     Column(
         "book_id",
         ForeignKey("books_book.id", deferrable=True, initially="DEFERRED"),
