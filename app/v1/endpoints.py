@@ -1,8 +1,8 @@
 """Search Entrypoint."""
-from typing import List, Optional
+from typing import Optional
 from fastapi.routing import APIRouter
 from fastapi.param_functions import Depends
-from sqlalchemy.orm import Session
+from sqlalchemy.orm import Session  # pylint: disable = import-error
 
 from core.dependencies import get_db
 from core.schemas import BooksResponse
@@ -34,20 +34,24 @@ def get_books(
             `gutenberg_id` id of the book.
 
         language(optional): str
-            language filter which suports multiple language codes via comma seperated values.
+            language filter which suports multiple language codes
+            via comma seperated values.
 
         mime_type(optional): str
-            `mime_type` filter which suports multiple mime_types via comma seperated values.
+            `mime_type` filter which suports multiple mime_types
+            via comma seperated values.
 
         topic(optional): str
             topic filter which suports multiple topics via comma seperated values. topic
             can be book subject name or book shelf name.
 
         author(optional): str
-            `author_name` filter which suports multiple author_names via comma seperated values.
+            `author_name` filter which suports multiple author_names
+            via comma seperated values.
 
         title(optional): str
-            `title` filter which suports multiple titles via comma seperated values.
+            `title` filter which suports multiple titles
+            via comma seperated values.
 
 
         offset(optional): int

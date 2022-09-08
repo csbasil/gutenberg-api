@@ -1,20 +1,8 @@
 """Perform Operations on database from ORM layer."""
-from sqlalchemy.sql import func, text
-from sqlalchemy import nullslast, or_, and_, any_
-from sqlalchemy.orm import joinedload
+from sqlalchemy import nullslast, or_, and_  # pylint: disable = import-error
+from sqlalchemy.orm import joinedload  # pylint: disable = import-error
 
-from core.models import (
-    Book,
-    Author,
-    Subject,
-    Language,
-    Shelf,
-    Format,
-    BookLanguage,
-    BookAuthor,
-    BookShelf,
-    BookSubject,
-)
+from core.models import Book, Author, Subject, Language, Shelf, Format
 
 
 def books_list(database, filters: dict = None, offset: int = 0, limit: int = 25):
@@ -23,18 +11,13 @@ def books_list(database, filters: dict = None, offset: int = 0, limit: int = 25)
     if filters is None:
         filters = {}
 
-    q = database.query(Book).options(
+    book_query = database.query(Book).options(
         joinedload(Book.languages),
         joinedload(Book.subjects),
         joinedload(Book.shelfs),
         joinedload(Book.authors),
     )
-    c = database.query(func.count(Book.id).over().label("no_of_books")).options(
-        joinedload(Book.languages),
-        joinedload(Book.subjects),
-        joinedload(Book.shelfs),
-        joinedload(Book.authors),
-    )
+
     filter_string = []
     if filters["gutenberg_id"]:
         filter_string.append(Book.gutenberg_id == filters["gutenberg_id"])
@@ -70,8 +53,10 @@ def books_list(database, filters: dict = None, offset: int = 0, limit: int = 25)
             author_string.append(Book.authors.any(Author.name.match(author)))
         filter_string.append(or_(*author_string))
 
-    q = q.filter(and_(*filter_string)).order_by(nullslast(Book.download_count.desc()))
+    book_query = book_query.filter(and_(*filter_string)).order_by(
+        nullslast(Book.download_count.desc())
+    )
 
-    count = q.count()
-    books = q.offset(offset * limit).limit(limit).all()
+    count = book_query.count()
+    books = book_query.offset(offset * limit).limit(limit).all()
     return count, books
