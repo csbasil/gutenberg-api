@@ -18,7 +18,7 @@ def set_up_database(env_variable="DATABASE_URL"):
     if database_url.startswith("postgres://"):
         database_url = database_url.replace("postgres://", "postgresql://", 1)
 
-    return create_engine(database_url)
+    return create_engine(database_url, echo=True)
 
 
 def verify_postgres():
