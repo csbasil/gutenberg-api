@@ -3,9 +3,12 @@ Database connection utils
 """
 from os import environ
 
+# pylint: disable=import-error
 from sqlalchemy import create_engine
 from sqlalchemy.orm import declarative_base
 from sqlalchemy.orm.session import sessionmaker
+
+# pylint: enable=import-error
 
 
 def set_up_database(env_variable="DATABASE_URL"):

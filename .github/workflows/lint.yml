@@ -24,7 +24,6 @@ jobs:
       run: |
         black --diff --check $(git ls-files '*.py')
 
-    - name: Lint with pylint, mypy
+    - name: Lint with pylint
       run: |
-        pylint app/ tests/
-        mypy app/ tests/
+        pylint --rc-file=setup.cfg app
