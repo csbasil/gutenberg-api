@@ -2,7 +2,9 @@ version: "3"
 
 services:
   db:
+    container_name: "db"
     build: ./postgres
+    profiles: ["development", "production"]
     environment:
       POSTGRES_USER: "postgres"
       POSTGRES_PASSWORD: "ignite"
@@ -14,8 +16,11 @@ services:
       retries: 5
     volumes:
       - "./postgres/data:/var/lib/postgresql/data"
-  core:
+
+  app:
+    container_name: "app"
     build: ./app
+    profiles: ["development", "production"]
     depends_on:
       db:
         condition: service_healthy
@@ -29,6 +34,7 @@ services:
       - ALLOWED_HOSTS=["*"]
 
   pg-admin:
+    container_name: "pg-admin"
     image: dpage/pgadmin4
     profiles: ["pg-admin"]
     ports:
@@ -36,3 +42,35 @@ services:
     environment:
       PGADMIN_DEFAULT_EMAIL: "admin@ignitesol.com"
       PGADMIN_DEFAULT_PASSWORD: "password"
+
+  testdb:
+    container_name: "testdb"
+    build: ./postgres
+    profiles: ["pytest"]
+    environment:
+      POSTGRES_USER: "postgres"
+      POSTGRES_PASSWORD: "ignite"
+      POSTGRES_DB: "gutendex"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    volumes:
+      - "./postgres/data:/var/lib/postgresql/data"
+
+  testapp:
+    container_name: "testapp"
+    build: ./app
+    profiles: ["pytest"]
+    depends_on:
+      testdb:
+        condition: service_healthy
+    ports:
+      - "8001:8000"
+    volumes:
+      - "./app:/app"
+    environment:
+      - DEBUG=True
+      - DATABASE_URL=postgresql://postgres:ignite@testdb:5432/gutendex
+      - ALLOWED_HOSTS=["*"]

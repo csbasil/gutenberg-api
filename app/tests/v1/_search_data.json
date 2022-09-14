@@ -1,0 +1,127 @@
+{
+    "valid_search": [
+        {
+            "filters":
+            {
+                "book_id": 21
+            },
+            "results":
+            {
+                "no_of_books": 1,
+                "books": {
+                    "title": "Aesop's Fables: Translated by George Fyler Townsend",
+                    "authors": [
+                      {
+                        "name": "Aesop",
+                        "birth_year": null,
+                        "death_year": null
+                      }
+                    ],
+                    "languages": [
+                      {
+                        "code": "en"
+                      }
+                    ],
+                    "subjects": [
+                      {
+                        "name": "Aesop's fables -- Translations into English"
+                      },
+                      {
+                        "name": "Fables, Greek -- Translations into English"
+                      }
+                    ],
+                    "shelfs": [],
+                    "formats": [
+                      {
+                        "mime_type": "text/html; charset=utf-8",
+                        "url": "http://www.gutenberg.org/files/21/21-h/21-h.htm"
+                      },
+                      {
+                        "mime_type": "application/epub+zip",
+                        "url": "http://www.gutenberg.org/ebooks/21.epub.images"
+                      },
+                      {
+                        "mime_type": "application/zip",
+                        "url": "http://www.gutenberg.org/files/21/21-0.zip"
+                      },
+                      {
+                        "mime_type": "application/rdf+xml",
+                        "url": "http://www.gutenberg.org/ebooks/21.rdf"
+                      },
+                      {
+                        "mime_type": "text/plain; charset=utf-8",
+                        "url": "http://www.gutenberg.org/files/21/21-0.txt"
+                      },
+                      {
+                        "mime_type": "text/plain; charset=us-ascii",
+                        "url": "http://www.gutenberg.org/files/21/bnote-21.txt"
+                      },
+                      {
+                        "mime_type": "application/x-mobipocket-ebook",
+                        "url": "http://www.gutenberg.org/ebooks/21.kindle.images"
+                      }
+                    ]
+                }
+            }
+        },
+        {
+            "filters":
+            {
+                "language": "en",
+                "author": "austin"
+            },
+            "results":
+            {
+                "no_of_books": 33,
+                "books": {
+                    "title": "Warwick, Leamington & Kenilworth; A Sketch-Book",
+                    "authors": [
+                      {
+                        "name": "Austin, R.S. (Robert Sargent)",
+                        "birth_year": 1895,
+                        "death_year": 1973
+                      }
+                    ],
+                    "languages": [
+                      {
+                        "code": "en"
+                      }
+                    ],
+                    "subjects": [],
+                    "shelfs": [],
+                    "formats": [
+                      {
+                        "mime_type": "application/rdf+xml",
+                        "url": "http://www.gutenberg.org/ebooks/54809.rdf"
+                      },
+                      {
+                        "mime_type": "image/jpeg",
+                        "url": "http://www.gutenberg.org/cache/epub/54809/pg54809.cover.medium.jpg"
+                      },
+                      {
+                        "mime_type": "text/html; charset=utf-8",
+                        "url": "http://www.gutenberg.org/files/54809/54809-h/54809-h.htm"
+                      },
+                      {
+                        "mime_type": "application/epub+zip",
+                        "url": "http://www.gutenberg.org/ebooks/54809.epub.images"
+                      },
+                      {
+                        "mime_type": "application/zip",
+                        "url": "http://www.gutenberg.org/files/54809/54809-0.zip"
+                      },
+                      {
+                        "mime_type": "application/x-mobipocket-ebook",
+                        "url": "http://www.gutenberg.org/ebooks/54809.kindle.images"
+                      },
+                      {
+                        "mime_type": "text/plain; charset=utf-8",
+                        "url": "http://www.gutenberg.org/files/54809/54809-0.txt"
+                      }
+                    ]
+                }
+            }
+        }
+
+    ]
+}
