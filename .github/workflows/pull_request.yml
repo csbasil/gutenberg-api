@@ -7,9 +7,9 @@ on:
 jobs:
   lint:
     name: lint
-    uses: csbasil/tfrmaker/.github/workflows/lint.yml@main
+    uses: csbasil/gutenberg-api/.github/workflows/lint.yml@main
 
   test:
     name: test
     needs: lint
-    uses: csbasil/tfrmaker/.github/workflows/test.yml@main
+    uses: csbasil/gutenberg-api/.github/workflows/test.yml@main
