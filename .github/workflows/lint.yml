@@ -2,7 +2,7 @@ name: lint
 
 on:
   push:
-    branches: [ main ]
+    branches: [ main, development ]
   workflow_call:
 
 jobs:

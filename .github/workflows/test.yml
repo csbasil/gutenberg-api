@@ -14,3 +14,5 @@ jobs:
         run: docker compose --profile=pytest up -d
       - name: Test with pytest
         run: docker exec testapp pytest
+      - name: Clean docker stack
+        run: docker compose --profile=pytest down
